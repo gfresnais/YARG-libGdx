@@ -20,6 +20,11 @@ public class TitleScreen extends AbstractScreen {
 
     float w, h;
 
+    /**
+     * Constructor for TitleScreen
+     * @param game
+     * @param rm
+     */
     public TitleScreen(final YARG game, final ResourceManager rm) {
         super(game, rm);
 
@@ -99,6 +104,9 @@ public class TitleScreen extends AbstractScreen {
         state_label.setPosition(0, YARG.row_height);
         state_label.setAlignment(Align.center);
         stage.addActor(state_label);
+
+        // Menu music
+        rm.playMusic(1, true);
     }
 
     @Override
@@ -106,6 +114,8 @@ public class TitleScreen extends AbstractScreen {
         Gdx.input.setInputProcessor(stage);
         game.fps.setPosition(0, h - 20);
         stage.addActor(game.fps);
+
+        rm.playMusic(1, true);
     }
 
     @Override
@@ -117,22 +127,5 @@ public class TitleScreen extends AbstractScreen {
         stage.act();
         // Draw the stage
         stage.draw();
-    }
-
-    @Override
-    public void resize(int width, int height) {}
-
-    @Override
-    public void pause() {}
-
-    @Override
-    public void resume() {}
-
-    @Override
-    public void hide() {}
-
-    @Override
-    public void dispose() {
-        stage.dispose();
     }
 }

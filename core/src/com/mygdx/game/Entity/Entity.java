@@ -2,6 +2,7 @@ package com.mygdx.game.Entity;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.mygdx.game.Animation.AnimationManager;
 import com.mygdx.game.Map.TileMap;
 import com.mygdx.game.Resources.ResourceManager;
 
@@ -18,6 +19,7 @@ public class Entity {
     protected ResourceManager rm;
 
     //TODO add animation handling
+    protected AnimationManager am;
 
     //TODO add battle scene
 

@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.profiling.GLProfiler;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.mygdx.game.Background.Background;
 import com.mygdx.game.Entity.Player;
 import com.mygdx.game.Resources.ResourceManager;
@@ -21,6 +20,10 @@ import com.mygdx.game.Screens.TitleScreen;
  * YARG is a RPG game developped with libGDX
  *
  * @author gfresnais
+ *
+ * Credits to
+ * @author Ming Li
+ * for some of the codebase
  */
 public class YARG extends Game {
 
@@ -59,6 +62,7 @@ public class YARG extends Game {
 
 	// For debugging purposes
 	public Label fps;
+	public static GLProfiler glProfiler;
 
 	//TODO set it somewhere else
 	// Set the columns and rows properties
@@ -73,8 +77,9 @@ public class YARG extends Game {
 
 		batch = new SpriteBatch();
 		rm = new ResourceManager();
-		//TODO add player
-		player = new Player();
+
+		// Player
+		player = new Player("Player", rm);
 
 		// Save
 		save = new Save("save.json");
@@ -84,7 +89,7 @@ public class YARG extends Game {
 		//TODO modify the font
 		fps = new Label("", new Label.LabelStyle(new BitmapFont(), Color.RED));
 		fps.setFontScale(0.5f);
-		// replace with a boolean setting
+		//TODO replace with a boolean setting
 		fps.setVisible(true);
 
 
@@ -94,7 +99,8 @@ public class YARG extends Game {
 		//TODO set background layers
 
 		// Profiler for logging
-		//GLProfiler.enable();
+		glProfiler = new GLProfiler(Gdx.graphics);
+		glProfiler.enable();
 
 		// Set the screen to TitleScreen
 		changeScreen(ScreenState.TITLE_SCREEN);
@@ -132,7 +138,7 @@ public class YARG extends Game {
 		batch.dispose();
 		super.dispose();
 
-		//GLProfiler.disable();
+		glProfiler.disable();
 	}
 
 	/**
@@ -140,12 +146,12 @@ public class YARG extends Game {
 	 * Uses GLProfiler
 	 */
 	public void logProfile(String source) {
-		/*System.out.println("Profiling " + source + "..." + "\n" +
-				"  Drawcalls: " + GLProfiler.drawCalls +
-				", Calls: " + GLProfiler.calls +
-				", TextureBindings: " + GLProfiler.textureBindings +
-				", ShaderSwitches:  " + GLProfiler.shaderSwitches +
-				" vertexCount: " + GLProfiler.vertexCount.value);
-		GLProfiler.reset();*/
+		System.out.println("Profiling " + source + "..." + "\n" +
+				"  Drawcalls: " + glProfiler.getDrawCalls() +
+				", Calls: " + glProfiler.getCalls() +
+				", TextureBindings: " + glProfiler.getTextureBindings() +
+				", ShaderSwitches:  " + glProfiler.getShaderSwitches() +
+				" vertexCount: " + glProfiler.getVertexCount().value);
+		glProfiler.reset();
 	}
 }

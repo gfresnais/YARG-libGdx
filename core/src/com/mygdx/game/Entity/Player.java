@@ -4,9 +4,13 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.mygdx.game.Animation.AnimationManager;
 import com.mygdx.game.Inventory.Equipment;
 import com.mygdx.game.Inventory.Inventory;
+import com.mygdx.game.Resources.GameUtils;
 import com.mygdx.game.Resources.ResourceManager;
+
+import javax.rmi.CORBA.Util;
 
 /**
  * The protagonist, your character
@@ -44,6 +48,7 @@ public class Player extends Entity {
         level = 1;
 
         //TODO add animations
+        //am = new AnimationManager(rm.sprites, GameUtils.PLAYER_WALKING, GameUtils.PLAYER_WALKING_DELAY);
     }
 
     /**
@@ -63,7 +68,7 @@ public class Player extends Entity {
      * @param batch
      */
     public void render(SpriteBatch batch) {
-        //TODO set the correct sprite
+        //batch.draw();
     }
 
     //TODO add movements methods

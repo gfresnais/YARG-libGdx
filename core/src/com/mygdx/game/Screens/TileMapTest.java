@@ -22,9 +22,6 @@ public class TileMapTest extends AbstractScreen {
     // Onscreen controls
     private WorldHud worldHud;
 
-    // Player
-    private Player player;
-
 
     public TileMapTest(final YARG game, final ResourceManager rm) {
         super(game, rm);
@@ -34,11 +31,8 @@ public class TileMapTest extends AbstractScreen {
 
         System.out.println(map.getMapProperties());
 
-        // Player info
-        player = new Player();
-
         // Onscreen controls
-        worldHud = new WorldHud(map.getCamera(), game, player, rm);
+        worldHud = new WorldHud(map.getCamera(), game, game.player, rm);
     }
 
     @Override
@@ -49,12 +43,8 @@ public class TileMapTest extends AbstractScreen {
         // Rendering the world
         map.render();
 
-        // FPS Counter
-        game.batch.begin();
-        // Player rendering
-        player.act(delta);
-        player.draw(game.batch, 0);
-        game.batch.end();
+        // Player
+        game.player.render(game.batch);
 
         // WorldHud rendering
         worldHud.getStage().act(delta);
@@ -62,19 +52,13 @@ public class TileMapTest extends AbstractScreen {
     }
 
     @Override
-    public void resize(int width, int height) {
-
-    }
+    public void resize(int width, int height) {}
 
     @Override
-    public void pause() {
-
-    }
+    public void pause() {}
 
     @Override
-    public void resume() {
-
-    }
+    public void resume() {}
 
     @Override
     public void show() {
@@ -84,9 +68,7 @@ public class TileMapTest extends AbstractScreen {
     }
 
     @Override
-    public void hide() {
-
-    }
+    public void hide() {}
 
     @Override
     public void dispose() {
