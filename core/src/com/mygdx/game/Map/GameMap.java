@@ -1,4 +1,4 @@
-package Map;
+package com.mygdx.game.Map;
 
 import com.badlogic.gdx.audio.Music;
 import com.mygdx.game.Entity.Player;
@@ -9,6 +9,9 @@ import com.mygdx.game.Resources.ResourceManager;
  * Is responsible for player movements
  *
  * @author gfresnais
+ *
+ * Credits to
+ * @author Ming Li
  */
 public class GameMap {
     private TileMap tileMap;

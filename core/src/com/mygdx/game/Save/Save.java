@@ -11,6 +11,9 @@ import com.mygdx.game.Resources.ResourceManager;
  * Handles saving data
  *
  * @author gfresnais
+ *
+ * Credits to
+ * @author Ming Li
  */
 public class Save {
     private Json json;

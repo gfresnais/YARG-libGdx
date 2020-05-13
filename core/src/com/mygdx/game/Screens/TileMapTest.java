@@ -7,7 +7,7 @@ import com.mygdx.game.Resources.ResourceManager;
 import com.mygdx.game.UI.WorldHud;
 import com.mygdx.game.YARG;
 
-import Map.TileMap;
+import com.mygdx.game.Map.TileMap;
 
 /**
  * Simple tileMap tes

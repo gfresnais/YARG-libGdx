@@ -15,6 +15,9 @@ import com.mygdx.game.YARG;
  * Templates for UI screens
  *
  * @author gfresnais
+ *
+ * Credits to
+ * @author Ming Li
  */
 public abstract class UI implements Disposable {
 
@@ -47,15 +50,15 @@ public abstract class UI implements Disposable {
 
     /**
      * Updates
-     * @param dt
+     * @param delta
      */
-    public abstract void update(float dt);
+    public abstract void update(float delta);
 
     /**
      * Renders
-     * @param dt
+     * @param delta
      */
-    public abstract void render(float dt);
+    public abstract void render(float delta);
 
     @Override
     public void dispose() {

@@ -12,6 +12,9 @@ import com.mygdx.game.YARG;
  * Screen template for game screens and states
  *
  * @author gfresnais
+ *
+ * Credits to
+ * @author Ming Li
  */
 public abstract class AbstractScreen implements Screen {
 

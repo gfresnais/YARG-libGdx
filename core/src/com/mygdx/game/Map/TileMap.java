@@ -1,4 +1,4 @@
-package Map;
+package com.mygdx.game.Map;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
@@ -16,6 +16,9 @@ import com.badlogic.gdx.math.Vector2;
  * TileMap creation
  *
  * @author gfresnais
+ *
+ * Credits to
+ * @author Ming Li
  */
 public class TileMap {
     private Texture img;

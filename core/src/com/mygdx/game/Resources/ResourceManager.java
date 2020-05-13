@@ -9,6 +9,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
  * Manages the resources such as musics, images, maps
  *
  * @author gfresnais
+ *
+ * Credits to
+ * @author Ming Li
  */
 public class ResourceManager {
     public AssetManager assetManager;

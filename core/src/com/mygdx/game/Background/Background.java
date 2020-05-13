@@ -10,6 +10,9 @@ import com.mygdx.game.YARG;
  * Background management for game screens
  *
  * @author gfresnais
+ *
+ * Credits to
+ * @author Ming Li
  */
 public class Background {
 

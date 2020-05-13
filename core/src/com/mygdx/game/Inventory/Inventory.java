@@ -4,6 +4,9 @@ package com.mygdx.game.Inventory;
  * Inventory
  *
  * @author gfresnais
+ *
+ * Credits to
+ * @author Ming Li
  */
 public class Inventory {
 
