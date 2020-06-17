@@ -7,7 +7,9 @@ import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Entity.Player;
+import com.mygdx.game.Map.TileMap;
 import com.mygdx.game.Resources.ResourceManager;
+import com.mygdx.game.Screens.GameScreen;
 import com.mygdx.game.YARG;
 
 
@@ -28,11 +30,15 @@ public abstract class UI implements Disposable {
     protected Player player;
     protected YARG game;
 
+    // For other UI
+    protected TileMap tileMap;
+    protected GameScreen screen;
+
     // Graphics stuff
     protected ShapeRenderer shapeRenderer;
 
     /**
-     * Constructor
+     * Constructor with common attributes
      * @param game
      * @param player
      * @param rm
@@ -46,6 +52,19 @@ public abstract class UI implements Disposable {
         stage = new Stage(viewport, game.batch);
 
         shapeRenderer = new ShapeRenderer();
+    }
+
+    /**
+     * Constructor for other UI (ex: battle)
+     * @param screen
+     * @param tileMap
+     * @param player
+     * @param rm
+     */
+    public UI(GameScreen screen, TileMap tileMap, Player player, ResourceManager rm) {
+        this(screen.getGame(), player, rm);
+        this.screen = screen;
+        this.tileMap = tileMap;
     }
 
     /**

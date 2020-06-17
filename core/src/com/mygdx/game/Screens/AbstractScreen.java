@@ -71,5 +71,11 @@ public abstract class AbstractScreen implements Screen {
         stage.dispose();
     }
 
+    /***********/
+    /* GETTERS */
+    /***********/
+
+    public YARG getGame() { return game; }
+
     //TODO add screen transition method
 }
