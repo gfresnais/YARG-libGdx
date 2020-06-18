@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapLayers;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -21,12 +22,10 @@ import com.badlogic.gdx.math.Vector2;
  * @author Ming Li
  */
 public class TileMap {
-    private Texture img;
     private TiledMap tiledMap;
-    private OrthographicCamera camera;
     private TiledMapRenderer tiledMapRenderer;
 
-    private final float unitScale = 1 / 32f;
+    private final float unitScale = 1 / 3f;
 
     private MapLayers layers;
 
@@ -61,25 +60,34 @@ public class TileMap {
         tileWidth = (Integer) tiledMap.getProperties().get("tilewidth");
         tileHeight = (Integer) tiledMap.getProperties().get("tileheight");
 
-        // Camera settings
-        camera = new OrthographicCamera();
-        camera.setToOrtho(false, 20, 10);
-        camera.update();
-
         // Map renderer
         tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap, unitScale);
+
+        //System.out.println(getMapProperties());
     }
 
     /**
-     * Rendering
+     * Updates the entities
+     * @param delta
      */
-    public void render() {
+    public void update(float delta) {
+        //TODO check the correct way to update the tileMap
+    }
+
+    /**
+     * Rendering with a batch and a camera
+     * Batch to draw entities
+     * Camera to follow the player and check the borders
+     * @param batch
+     * @param cam
+     */
+    public void render(SpriteBatch batch, OrthographicCamera cam) {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        camera.update();
-        tiledMapRenderer.setView(camera);
+        cam.update();
+        tiledMapRenderer.setView(cam);
         tiledMapRenderer.render();
     }
 
@@ -87,12 +95,7 @@ public class TileMap {
      * Deleting from memory
      */
     public void dispose() {
-        img.dispose();
         tiledMap.dispose();
-    }
-
-    public OrthographicCamera getCamera() {
-        return camera;
     }
 
 

@@ -11,9 +11,9 @@ import com.mygdx.game.Background.Background;
 import com.mygdx.game.Entity.Player;
 import com.mygdx.game.Resources.ResourceManager;
 import com.mygdx.game.Save.Save;
+import com.mygdx.game.Screens.GameScreen;
 import com.mygdx.game.Screens.OptionsScreen;
 import com.mygdx.game.Screens.ScreenState;
-import com.mygdx.game.Screens.TileMapTest;
 import com.mygdx.game.Screens.TitleScreen;
 
 /**
@@ -54,7 +54,7 @@ public class YARG extends Game {
 	// Screens
 	private OptionsScreen optionsScreen;
 	private TitleScreen titleScreen;
-	private TileMapTest playScreen;
+	private GameScreen playScreen;
 	//TODO
 
 	// Background
@@ -64,7 +64,6 @@ public class YARG extends Game {
 	public Label fps;
 	public static GLProfiler glProfiler;
 
-	//TODO set it somewhere else
 	// Set the columns and rows properties
 	static public int row_height;
 	static public int col_width;
@@ -87,7 +86,7 @@ public class YARG extends Game {
 
 		// debugging fps
 		//TODO modify the font
-		fps = new Label("", new Label.LabelStyle(new BitmapFont(), Color.RED));
+		fps = new Label("", new Label.LabelStyle(rm.font, Color.RED));
 		fps.setFontScale(0.5f);
 		//TODO replace with a boolean setting
 		fps.setVisible(true);
@@ -121,7 +120,7 @@ public class YARG extends Game {
 				this.setScreen(optionsScreen);
 				break;
             case PLAY_SCREEN:
-				if(playScreen == null) playScreen = new TileMapTest(this, rm);
+				if(playScreen == null) playScreen = new GameScreen(this, rm);
 				this.setScreen(playScreen);
 				break;
 		}

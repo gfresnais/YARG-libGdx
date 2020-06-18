@@ -10,7 +10,6 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.mygdx.game.Entity.Player;
 import com.mygdx.game.Resources.ResourceManager;
 import com.mygdx.game.YARG;
-import com.mygdx.game.Screens.TileMapTest;
 
 /**
  * WorldHud for moving the player

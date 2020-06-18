@@ -18,8 +18,6 @@ public class TitleScreen extends AbstractScreen {
     private Stage stage;
     private Label state_label;
 
-    float w, h;
-
     /**
      * Constructor for TitleScreen
      * @param game
@@ -27,9 +25,6 @@ public class TitleScreen extends AbstractScreen {
      */
     public TitleScreen(final YARG game, final ResourceManager rm) {
         super(game, rm);
-
-        w = Gdx.graphics.getWidth();
-        h = Gdx.graphics.getHeight();
 
         // Create the stage (2D scene)
         stage = new Stage(new ScreenViewport());
@@ -43,7 +38,7 @@ public class TitleScreen extends AbstractScreen {
         stage.addActor(title);
 
 
-        // Text Button
+        // Text Button (test)
         Button t_button = new TextButton("Test", rm.skin);
         t_button.setSize(YARG.col_width * 4, YARG.row_height);
         t_button.setPosition(w / 2f - t_button.getWidth() / 2, h / 2f - YARG.row_height);
@@ -61,7 +56,7 @@ public class TitleScreen extends AbstractScreen {
         });
         stage.addActor(t_button);
 
-        // Text Button
+        // Text Button (Play)
         Button play_button = new TextButton("Play", rm.skin);
         play_button.setSize(YARG.col_width * 4, YARG.row_height);
         play_button.setPosition(w / 2f - play_button.getWidth() / 2, h / 2f);
@@ -69,7 +64,6 @@ public class TitleScreen extends AbstractScreen {
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
                 game.changeScreen(ScreenState.PLAY_SCREEN);
-                dispose();
             }
 
             @Override
@@ -87,7 +81,6 @@ public class TitleScreen extends AbstractScreen {
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
                 game.changeScreen(ScreenState.OPTIONS_SCREEN);
-                //dispose();
             }
 
             @Override
@@ -100,24 +93,29 @@ public class TitleScreen extends AbstractScreen {
         // State label
         state_label = new Label("Press a button", rm.skin, "black");
         state_label.setFontScale(3);
-        state_label.setSize(Gdx.graphics.getWidth(), YARG.row_height);
+        state_label.setSize(w, YARG.row_height);
         state_label.setPosition(0, YARG.row_height);
         state_label.setAlignment(Align.center);
         stage.addActor(state_label);
-
-        // Menu music
-        rm.playMusic(1, true);
     }
 
+    /**
+     * Sets the input processor and starts the music
+     */
     @Override
     public void show() {
         Gdx.input.setInputProcessor(stage);
         game.fps.setPosition(0, h - 20);
         stage.addActor(game.fps);
 
+        // Menu music
         rm.playMusic(1, true);
     }
 
+    /**
+     * Renders the title screen
+     * @param delta
+     */
     @Override
     public void render(float delta) {
         // Create a white background

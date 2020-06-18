@@ -39,6 +39,7 @@ public abstract class UI implements Disposable {
 
     /**
      * Constructor with common attributes
+     *
      * @param game
      * @param player
      * @param rm
@@ -56,6 +57,7 @@ public abstract class UI implements Disposable {
 
     /**
      * Constructor for other UI (ex: battle)
+     *
      * @param screen
      * @param tileMap
      * @param player
@@ -69,12 +71,14 @@ public abstract class UI implements Disposable {
 
     /**
      * Updates
+     *
      * @param delta
      */
     public abstract void update(float delta);
 
     /**
      * Renders
+     *
      * @param delta
      */
     public abstract void render(float delta);
@@ -84,4 +88,11 @@ public abstract class UI implements Disposable {
         stage.dispose();
         shapeRenderer.dispose();
     }
+
+    /***********/
+    /* GETTERS */
+
+    /***********/
+
+    public Stage getStage() {return stage;}
 }

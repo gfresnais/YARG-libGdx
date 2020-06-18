@@ -26,20 +26,19 @@ public class OptionsScreen extends AbstractScreen {
         // Title (label)
         Label title = new Label("Options Screen", rm.skin, "black");
         title.setFontScale(3);
-        title.setSize(Gdx.graphics.getWidth(), YARG.row_height * 2);
-        title.setPosition(0, Gdx.graphics.getHeight() - YARG.row_height * 2);
+        title.setSize(w, YARG.row_height * 2);
+        title.setPosition(0, h - YARG.row_height * 2);
         title.setAlignment(Align.center);
         stage.addActor(title);
 
         // Text Button
         Button t_button = new TextButton("Back", rm.skin);
         t_button.setSize(YARG.col_width * 4, YARG.row_height);
-        t_button.setPosition(Gdx.graphics.getWidth() / 2 - t_button.getWidth() / 2, Gdx.graphics.getHeight() / 2 - t_button.getHeight() / 2);
+        t_button.setPosition(w / 2 - t_button.getWidth() / 2, h / 2 - t_button.getHeight() / 2);
         t_button.addListener(new InputListener(){
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
                 game.changeScreen(ScreenState.TITLE_SCREEN);
-                //dispose();
             }
 
             @Override

@@ -1,6 +1,7 @@
 package com.mygdx.game.Map;
 
-import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.Entity.Player;
 import com.mygdx.game.Resources.ResourceManager;
 import com.mygdx.game.Screens.GameScreen;
@@ -21,18 +22,40 @@ public class GameMap {
     private ResourceManager rm;
     private GameScreen screen;
 
-    //TODO Handle music
-    private Music mapTheme;
-
     /**
      * Constructor
      * @param player
      * @param rm
      */
-    public GameMap(GameScreen screen, Player player, ResourceManager rm) {
+    public GameMap(GameScreen screen, Player player, ResourceManager rm, String mapName) {
         this.screen = screen;
         this.player = player;
         this.rm = rm;
+
+        tileMap = new TileMap(mapName);
+    }
+
+
+    /**
+     * Updating player informations and tilemap entities
+     * @param delta
+     */
+    public void update(float delta) {
+        player.update(delta);
+        tileMap.update(delta);
+
+        //TODO add game states for the player interactions
+    }
+
+    /**
+     * Rendering the tilemap and the player
+     * @param delta
+     * @param batch
+     * @param cam
+     */
+    public void render(float delta, SpriteBatch batch, OrthographicCamera cam) {
+        tileMap.render(batch, cam);
+        player.render(batch);
     }
 
 
@@ -54,10 +77,6 @@ public class GameMap {
 
     public GameScreen getScreen() {
         return screen;
-    }
-
-    public Music getMapTheme() {
-        return mapTheme;
     }
 
 }

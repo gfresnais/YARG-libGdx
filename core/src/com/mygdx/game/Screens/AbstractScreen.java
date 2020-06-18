@@ -1,5 +1,6 @@
 package com.mygdx.game.Screens;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -30,6 +31,8 @@ public abstract class AbstractScreen implements Screen {
     // Viewport of the screen to keep aspect ratio if needed
     protected Viewport viewport;
 
+    float w, h;
+
     public AbstractScreen(final YARG game, final ResourceManager rm) {
         this.game = game;
         this.rm = rm;
@@ -43,6 +46,9 @@ public abstract class AbstractScreen implements Screen {
 
         // Sets the viewport and the SpriteBatch
         stage = new Stage(viewport, game.batch);
+
+        w = Gdx.graphics.getWidth();
+        h = Gdx.graphics.getHeight();
     }
 
     @Override
