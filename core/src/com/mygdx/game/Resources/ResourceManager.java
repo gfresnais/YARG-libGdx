@@ -30,7 +30,7 @@ public class ResourceManager {
     public final BitmapFont font;
 
     // Player
-    public TextureRegion[][] sprites32x32;
+    public TextureRegion[][] player32x32;
 
     // Music
     public Music menuTheme;
@@ -49,9 +49,16 @@ public class ResourceManager {
 
         assetManager.finishLoading();
 
+        // Loads the sprites atlas file
         atlas = assetManager.get("sprites.atlas");
 
+        // Debugging
+        System.out.println(">>RM atlas regions");
         System.out.println(atlas.getRegions());
+        System.out.println(">> END RM");
+
+        // sprites, searches a specific region
+        player32x32 = atlas.findRegion("Male/Male 01-1").split(32, 32);
 
 
 
@@ -104,5 +111,9 @@ public class ResourceManager {
     public void dispose() {
         assetManager.dispose();
         font.dispose();
+        skin.dispose();
+        atlas.dispose();
+
+        menuTheme.dispose();
     }
 }

@@ -1,8 +1,9 @@
 package com.mygdx.game.Entity;
 
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
-import com.mygdx.game.Animation.AnimationManager;
 import com.mygdx.game.Map.TileMap;
 import com.mygdx.game.Resources.ResourceManager;
 
@@ -18,10 +19,8 @@ public class Entity {
     protected String id;
     protected ResourceManager rm;
 
-    //TODO add animation handling
-    protected AnimationManager am;
-
-    //TODO add battle scene
+    protected Animation<TextureRegion> am;
+    protected float stateTime;
 
     // The coordinates of the entity on the map (x, y)
     protected Vector2 position;
@@ -69,11 +68,11 @@ public class Entity {
      * @param delta
      */
     public void update(float delta) {
+        stateTime += delta;
+
         // rpg
         if(hp > maxHp) hp = maxHp;
         if( hp <= 0 ) hp = 0;
-
-        //TODO add animation handler
     }
 
     /**
@@ -82,7 +81,8 @@ public class Entity {
      * @param looping
      */
     public void render(SpriteBatch batch, boolean looping) {
-        //TODO add animation of the sprite
+        // Animates the sprite
+        batch.draw(am.getKeyFrame(stateTime, true), position.x + 1, position.y);
     }
 
     /**
@@ -106,5 +106,9 @@ public class Entity {
         if( hp > maxHp ) hp = maxHp;
     }
 
-    //TODO add related map methods
+    /**
+     * Returns the position
+     * @return
+     */
+    public Vector2 getPosition() { return position; }
 }

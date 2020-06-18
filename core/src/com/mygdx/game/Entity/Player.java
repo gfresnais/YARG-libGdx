@@ -1,16 +1,13 @@
 package com.mygdx.game.Entity;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.mygdx.game.Animation.AnimationManager;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.utils.Array;
+import com.mygdx.game.Entity.Animation.AnimationPlayer;
 import com.mygdx.game.Inventory.Equipment;
 import com.mygdx.game.Inventory.Inventory;
-import com.mygdx.game.Resources.GameUtils;
 import com.mygdx.game.Resources.ResourceManager;
-
-import javax.rmi.CORBA.Util;
 
 /**
  * The protagonist, your character
@@ -22,12 +19,15 @@ import javax.rmi.CORBA.Util;
  */
 public class Player extends Entity {
 
+    // Animation
+    private AnimationPlayer am;
+
     // Movement
     // -1 stop, 0 down, 1 up, 2 left, 3 right
     public int direction = -1;
 
     //Battle
-    //TODO enemy
+    private Enemy opponent;
     private boolean battling = false;
 
     // inventory and equipment
@@ -51,8 +51,8 @@ public class Player extends Entity {
 
         level = 1;
 
-        //TODO add animations
-        //am = new AnimationManager(rm.sprites, GameUtils.PLAYER_WALKING, GameUtils.PLAYER_WALKING_DELAY);
+        // World animation
+        am = new AnimationPlayer(this, rm);
     }
 
     /**
@@ -65,15 +65,18 @@ public class Player extends Entity {
         // Movement
         handleMovement(delta);
 
+        // Animation
+        am.update(delta);
+
         //TODO check interaction
     }
 
     /**
-     * Renders the player
+     * Renders the player using a batch
      * @param batch
      */
     public void render(SpriteBatch batch) {
-        //batch.draw();
+        batch.draw(am.getAm(), position.x, position.y);
     }
 
     /**
@@ -109,17 +112,21 @@ public class Player extends Entity {
      */
     public void handleMovement(float delta) {
         switch (direction) {
-            case 0:
+            case 0: // Down
                 position.y -= delta;
+                am.setAnimIndex(0);
                 break;
-            case 1:
+            case 1: // Up
                 position.y += delta;
+                am.setAnimIndex(3);
                 break;
-            case 2:
+            case 2: // Left
                 position.x -= delta;
+                am.setAnimIndex(1);
                 break;
-            case 3:
+            case 3: // Right
                 position.x += delta;
+                am.setAnimIndex(2);
                 break;
         }
     }
@@ -127,4 +134,6 @@ public class Player extends Entity {
     //TODO add item stats calculation
 
     //TODO add experience handler
+
+    public TextureRegion getAnim() { return am.getAm(); }
 }

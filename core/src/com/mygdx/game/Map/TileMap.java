@@ -116,4 +116,24 @@ public class TileMap {
                 ", tileheight =" + tileHeight +
                 ", layers = " + strLayers;
     }
+
+    /***********/
+    /* GETTERS */
+    /***********/
+
+    public int getMapWidth() {
+        return mapWidth;
+    }
+
+    public int getMapHeight() {
+        return mapHeight;
+    }
+
+    public int getTileWidth() {
+        return tileWidth;
+    }
+
+    public int getTileHeight() {
+        return tileHeight;
+    }
 }

@@ -46,7 +46,7 @@ public class Save {
         //Example
         String str = json.fromJson(String.class, Base64Coder.decodeString(file.readString()));
 
-        System.out.println(str);
+        System.out.println("Save >> " + str);
 
         //TODO load real data
     }

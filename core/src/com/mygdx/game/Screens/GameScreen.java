@@ -37,7 +37,10 @@ public class GameScreen extends AbstractScreen {
     public GameScreen(final YARG game, final ResourceManager rm) {
         super(game, rm);
 
-        //gameMap = new GameMap(this, game.player, rm);
+        // Creating screen elements
+        gameMap = new GameMap(this, game.player, game.rm, "test"); // mapName is just a test for the moment
+        gameHud = new GameHud(this, gameMap.getTileMap(), game.player, game.rm);
+
         //battle = new Battle(this, gameMap.getTileMap(), gameMap.getPlayer());
 
         // Creation of backgrounds
@@ -46,10 +49,6 @@ public class GameScreen extends AbstractScreen {
         //backgrounds[0] = new Background();
         // field layer
         //backgrounds[1] = new Background();
-
-        gameMap = new GameMap(this, game.player, game.rm, "test");
-
-        gameHud = new GameHud(this, gameMap.getTileMap(), game.player, game.rm);
 
         // Input multiplexer
         multiplexer = new InputMultiplexer();
@@ -61,8 +60,31 @@ public class GameScreen extends AbstractScreen {
         Gdx.input.setInputProcessor(multiplexer);
     }
 
+
+    /**
+     * Updates the camera
+     * It follows the player
+     */
+    public void updateCamera() {
+
+        if( gameMap.getPlayer().getPosition().x <= gameMap.getTileMap().getMapWidth() ) {
+            cam.position.x = gameMap.getPlayer().getPosition().x + 64;
+        }
+
+        if( gameMap.getPlayer().getPosition().y <= gameMap.getTileMap().getMapHeight() ) {
+            cam.position.y = gameMap.getPlayer().getPosition().y + 64;
+        }
+    }
+
+    /**
+     * Updates informations of the game screen
+     * @param delta
+     */
     public void update(float delta) {
         //TODO check the states
+
+        // Update camera
+        updateCamera();
 
         // Update map
         gameMap.update(delta);
@@ -71,6 +93,10 @@ public class GameScreen extends AbstractScreen {
         gameHud.update(delta);
     }
 
+    /**
+     * Renders the game screen
+     * @param delta
+     */
     public void render(float delta) {
         update(delta);
 
@@ -79,10 +105,11 @@ public class GameScreen extends AbstractScreen {
 
         game.batch.begin();
 
-        // Map camera
-        game.batch.setProjectionMatrix(cam.combined);
-        // Renders the player and the tilemap
+        // Renders the tilemap
         gameMap.render(delta, game.batch, cam);
+
+        // Renders the player
+        game.batch.draw(game.player.getAnim(), game.player.getPosition().x, game.player.getPosition().y);
 
         game.batch.end();
 

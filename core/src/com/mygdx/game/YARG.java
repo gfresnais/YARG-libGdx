@@ -93,7 +93,7 @@ public class YARG extends Game {
 
 
 		// Background settings
-		menuBackground = new Background[1];
+		//menuBackground = new Background[1];
 
 		//TODO set background layers
 
@@ -128,6 +128,7 @@ public class YARG extends Game {
 
 	@Override
 	public void render () {
+		// FPS for debug
 		fps.setText(Gdx.graphics.getFramesPerSecond() + " fps");
 		super.render();
 	}
@@ -136,6 +137,11 @@ public class YARG extends Game {
 	public void dispose () {
 		batch.dispose();
 		super.dispose();
+
+		rm.dispose();
+		titleScreen.dispose();
+		optionsScreen.dispose();
+		playScreen.dispose();
 
 		glProfiler.disable();
 	}

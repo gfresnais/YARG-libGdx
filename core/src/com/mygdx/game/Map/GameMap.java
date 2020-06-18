@@ -41,8 +41,8 @@ public class GameMap {
      * @param delta
      */
     public void update(float delta) {
-        player.update(delta);
         tileMap.update(delta);
+        player.update(delta);
 
         //TODO add game states for the player interactions
     }
