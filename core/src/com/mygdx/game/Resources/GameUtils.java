@@ -18,6 +18,10 @@ public class GameUtils {
     // Animation delay
     public static final float PLAYER_WALKING_DELAY = 1 / 6f;
 
+    // CrossPad buttons
+    public static final int CROSS_PAD_SIZE = 20;
+    public static final int CROSS_PAD_OFFSET = 5;
+
     /**
      * Returns an Entity according to the given id
      * Helps for enemy generation
